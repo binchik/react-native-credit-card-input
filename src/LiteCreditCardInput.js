@@ -139,7 +139,7 @@ export default class LiteCreditCardInput extends Component {
   }
 
   render() {
-    const { focused, values: { number }, inputStyle, status: { number: numberStatus } } = this.props;
+    const { focused, values: { number }, inputStyle, status: { number: numberStatus }, requiresCVC } = this.props;
     const showRightPart = focused && focused !== "number";
 
     return (
@@ -172,9 +172,9 @@ export default class LiteCreditCardInput extends Component {
           <CCInput {...this._inputProps("expiry")}
             keyboardType="numeric"
             containerStyle={s.expiryInput} />
-          <CCInput {...this._inputProps("cvc")}
+          {requiresCVC && <CCInput {...this._inputProps("cvc")}
             keyboardType="numeric"
-            containerStyle={s.cvcInput} />
+            containerStyle={s.cvcInput} />}
         </View>
       </View>
     );
